@@ -1,14 +1,15 @@
 import {
-  Button,
   Divider,
   Icon,
   IconElement,
   Input,
   Layout,
-  TopNavigation,
+  StyleService,
+  useStyleSheet,
+  Text,
 } from '@ui-kitten/components';
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 
 const SearchIcon = (props): IconElement => (
   <Icon {...props} name="search-outline" />
@@ -18,20 +19,48 @@ const CrossIcon = (props): IconElement => (
 );
 
 export default () => {
+  const styles = useStyleSheet(themedStyles);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <TopNavigation title="Wine Cellar" alignment="center" />
+      <View style={styles.headerContainer}>
+        <Text category="h1" status="control">
+          Wine Cellar
+        </Text>
+      </View>
       <Divider />
-      <Layout
-        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-      >
-        <Button>Open</Button>
+      <Layout style={styles.formContainer}></Layout>
+      <View style={styles.bottomContainer}>
         <Input
+          style={styles.searchInput}
           placeholder="Search"
           accessoryLeft={SearchIcon}
           accessoryRight={CrossIcon}
         />
-      </Layout>
+      </View>
     </SafeAreaView>
   );
 };
+
+const themedStyles = StyleService.create({
+  container: {
+    backgroundColor: 'background-basic-color-1',
+  },
+  headerContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: 216,
+    backgroundColor: 'color-primary-default',
+  },
+  bottomContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'color-primary-default',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+  },
+  formContainer: {
+    flex: 1,
+  },
+  searchInput: {},
+});
