@@ -8,6 +8,7 @@ import {
 import React from 'react';
 import { SafeAreaView, View } from 'react-native';
 import SearchBar from './SearchBar';
+import BottleListView from './BottleListView';
 
 export default () => {
   const styles = useStyleSheet(themedStyles);
@@ -20,7 +21,9 @@ export default () => {
         </Text>
       </View>
       <Divider />
-      <Layout style={styles.formContainer}></Layout>
+      <Layout style={styles.formContainer}>
+        <BottleListView />
+      </Layout>
       <View style={styles.bottomContainer}>
         <SearchBar />
       </View>
