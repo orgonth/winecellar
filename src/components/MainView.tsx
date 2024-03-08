@@ -1,8 +1,5 @@
 import {
   Divider,
-  Icon,
-  IconElement,
-  Input,
   Layout,
   StyleService,
   useStyleSheet,
@@ -10,13 +7,7 @@ import {
 } from '@ui-kitten/components';
 import React from 'react';
 import { SafeAreaView, View } from 'react-native';
-
-const SearchIcon = (props): IconElement => (
-  <Icon {...props} name="search-outline" />
-);
-const CrossIcon = (props): IconElement => (
-  <Icon {...props} name="close-outline" />
-);
+import SearchBar from './SearchBar';
 
 export default () => {
   const styles = useStyleSheet(themedStyles);
@@ -31,12 +22,7 @@ export default () => {
       <Divider />
       <Layout style={styles.formContainer}></Layout>
       <View style={styles.bottomContainer}>
-        <Input
-          style={styles.searchInput}
-          placeholder="Search"
-          accessoryLeft={SearchIcon}
-          accessoryRight={CrossIcon}
-        />
+        <SearchBar />
       </View>
     </SafeAreaView>
   );
@@ -61,6 +47,7 @@ const themedStyles = StyleService.create({
   },
   formContainer: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  searchInput: {},
 });
