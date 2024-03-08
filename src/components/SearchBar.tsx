@@ -3,7 +3,6 @@ import {
   Icon,
   IconElement,
   Input,
-  Layout,
   List,
   ListItem,
   StyleService,
@@ -74,17 +73,15 @@ export default () => {
   return (
     <View>
       {resultVisibility && (
-        <Layout>
-          <View style={styles.container}>
-            <Animated.View
-              entering={FadeInDown}
-              exiting={FadeOutDown}
-              style={styles.content}
-            >
-              <List style={styles.list} data={data} renderItem={renderItem} />
-            </Animated.View>
-          </View>
-        </Layout>
+        <View style={styles.container}>
+          <Animated.View
+            entering={FadeInDown}
+            exiting={FadeOutDown}
+            style={styles.content}
+          >
+            <List style={styles.list} data={data} renderItem={renderItem} />
+          </Animated.View>
+        </View>
       )}
       <Input
         style={styles.searchInput}
@@ -100,7 +97,7 @@ export default () => {
 
 const themedStyles = StyleService.create({
   container: {
-    position: 'absolute',
+    // position: 'absolute',
     justifyContent: 'center',
     zIndex: 10,
     bottom: 0,
