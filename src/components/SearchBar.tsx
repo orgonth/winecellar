@@ -12,6 +12,7 @@ import {
 import React, { ReactElement, useEffect } from 'react';
 import { TouchableWithoutFeedback, View } from 'react-native';
 import { CloseIcon, SearchIcon } from './common/icons';
+import Animated, { FadeInDown, FadeOutDown } from 'react-native-reanimated';
 
 interface IListItem {
   title: string;
@@ -72,13 +73,19 @@ export default () => {
 
   return (
     <View>
-      <Layout style={{ visibility: resultVisibility ? 'visible' : 'hidden' }}>
-        <View style={styles.container}>
-          <View style={styles.content}>
-            <List style={styles.list} data={data} renderItem={renderItem} />
+      {resultVisibility && (
+        <Layout>
+          <View style={styles.container}>
+            <Animated.View
+              entering={FadeInDown}
+              exiting={FadeOutDown}
+              style={styles.content}
+            >
+              <List style={styles.list} data={data} renderItem={renderItem} />
+            </Animated.View>
           </View>
-        </View>
-      </Layout>
+        </Layout>
+      )}
       <Input
         style={styles.searchInput}
         placeholder="Search"
