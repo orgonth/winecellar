@@ -10,7 +10,7 @@ import {
   useStyleSheet,
 } from '@ui-kitten/components';
 import React, { ReactElement, useEffect } from 'react';
-import { TouchableWithoutFeedback, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { CloseIcon, SearchIcon } from './common/icons';
 import Animated, { FadeInDown, FadeOutDown } from 'react-native-reanimated';
 
@@ -38,9 +38,9 @@ export default () => {
   };
 
   const renderClearIcon = (props: any): ReactElement => (
-    <TouchableWithoutFeedback onPress={onClearIconPress}>
+    <Pressable onPress={onClearIconPress}>
       <CloseIcon {...props} />
-    </TouchableWithoutFeedback>
+    </Pressable>
   );
 
   const data = new Array(16).fill({
@@ -112,10 +112,10 @@ const themedStyles = StyleService.create({
   content: {
     padding: 3,
     backgroundColor: 'grey',
-    shadowRadius: 8,
-    shadowOpacity: 0.3,
+    boxShadowRadius: 8,
+    boxShadowOpacity: 0.3,
     elevation: 3,
-    shadowOffset: { width: 0, height: 8 },
+    boxShadowOffset: { width: 0, height: 8 },
     borderRadius: 5,
     maxHeight: 200,
   },
