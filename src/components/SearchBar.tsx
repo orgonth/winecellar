@@ -102,7 +102,6 @@ const themedStyles = StyleService.create({
   container: {
     position: 'absolute',
     justifyContent: 'center',
-    alignItems: 'center',
     zIndex: 10,
     bottom: 0,
     left: 0,
@@ -111,7 +110,7 @@ const themedStyles = StyleService.create({
 
   content: {
     padding: 3,
-    backgroundColor: 'grey',
+    backgroundColor: '#edf1f7',
     boxShadowRadius: 8,
     boxShadowOpacity: 0.3,
     elevation: 3,

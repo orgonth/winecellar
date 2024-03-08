@@ -43,7 +43,6 @@ const themedStyles = StyleService.create({
   },
   bottomContainer: {
     justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: 'color-primary-default',
     paddingHorizontal: 10,
     paddingVertical: 10,
@@ -51,6 +50,5 @@ const themedStyles = StyleService.create({
   formContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
   },
 });
