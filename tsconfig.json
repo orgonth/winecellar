@@ -1,7 +1,9 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "strict": true,
+    "strictPropertyInitialization": false,
     "jsx": "react",
-    "strict": true
+    "skipLibCheck": true
   }
 }
