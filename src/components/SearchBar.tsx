@@ -2,6 +2,7 @@ import {
   Button,
   Icon,
   IconElement,
+  IconProps,
   Input,
   List,
   ListItem,
@@ -51,7 +52,7 @@ export default () => {
     <Button size="tiny">FOLLOW</Button>
   );
 
-  const renderItemIcon = (props): IconElement => (
+  const renderItemIcon = (props: IconProps): IconElement => (
     <Icon {...props} name="person" />
   );
 

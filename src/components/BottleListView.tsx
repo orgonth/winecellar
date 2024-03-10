@@ -3,6 +3,7 @@ import {
   Button,
   Icon,
   IconElement,
+  IconProps,
   List,
   ListItem,
 } from '@ui-kitten/components';
@@ -23,7 +24,7 @@ export default (): React.ReactElement => {
     <Button size="tiny">FOLLOW</Button>
   );
 
-  const renderItemIcon = (props): IconElement => (
+  const renderItemIcon = (props: IconProps): IconElement => (
     <Icon {...props} name="person" />
   );
 
