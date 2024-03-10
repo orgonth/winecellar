@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "ts:check": "tsc"
+    "ts:check": "tsc",
+    "prepare": "husky"
   },
   "dependencies": {
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
@@ -35,13 +36,8 @@
     "sass": "^1.71.1",
     "typescript": "^5.1.3"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
-    "*.{js,md}": [
+    "*.{js,jsx,md,ts,tsx}": [
       "prettier --write"
     ]
   },
