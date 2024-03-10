@@ -8,43 +8,43 @@ import {
   ListItem,
 } from '@ui-kitten/components';
 import { StyleSheet } from 'react-native';
+import { observer } from 'mobx-react';
+import { useStore } from '../stores/domain';
+import { Wine } from '../stores/domain/BottleStore';
 
 interface IListItem {
-  title: string;
-  description: string;
+  item: Wine;
+  index: number;
 }
 
-const data = new Array(16).fill({
-  title: 'Title for Item',
-  description: 'Description for Item',
-});
+const renderItemAccessory = (): React.ReactElement => (
+  <Button size="tiny">FOLLOW</Button>
+);
 
-export default (): React.ReactElement => {
-  const renderItemAccessory = (): React.ReactElement => (
-    <Button size="tiny">FOLLOW</Button>
-  );
+const renderItemIcon = (props: IconProps): IconElement => (
+  <Icon {...props} name="person" />
+);
 
-  const renderItemIcon = (props: IconProps): IconElement => (
-    <Icon {...props} name="person" />
-  );
+export default observer(() => {
+  const { wineStore } = useStore();
 
-  const renderItem = ({
-    item,
-    index,
-  }: {
-    item: IListItem;
-    index: number;
-  }): React.ReactElement => (
+  const renderItem = ({ item, index }: IListItem): React.ReactElement => (
     <ListItem
-      title={`${item.title} ${index + 1}`}
-      description={`${item.description} ${index + 1}`}
+      title={item.title}
+      description={item.id as string}
       accessoryLeft={renderItemIcon}
       accessoryRight={renderItemAccessory}
     />
   );
 
-  return <List style={styles.container} data={data} renderItem={renderItem} />;
-};
+  return (
+    <List
+      style={styles.container}
+      data={wineStore.wines.slice()}
+      renderItem={renderItem}
+    />
+  );
+});
 
 const styles = StyleSheet.create({
   container: {},

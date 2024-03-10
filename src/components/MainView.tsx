@@ -9,6 +9,7 @@ import React from 'react';
 import { SafeAreaView, View } from 'react-native';
 import SearchBar from './SearchBar';
 import BottleListView from './BottleListView';
+import CreateWine from './CreateWine';
 
 export default () => {
   const styles = useStyleSheet(themedStyles);
@@ -19,6 +20,7 @@ export default () => {
         <Text category="h1" status="control">
           Wine Cellar
         </Text>
+        <CreateWine />
       </View>
       <Divider />
       <Layout style={styles.formContainer}>
