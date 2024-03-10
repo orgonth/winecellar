@@ -28,7 +28,7 @@ const renderItemIcon = (props: IconProps): IconElement => (
 export default observer(() => {
   const { wineStore } = useStore();
 
-  const renderItem = ({ item, index }: IListItem): React.ReactElement => (
+  const renderItem = ({ item }: IListItem): React.ReactElement => (
     <ListItem
       title={item.title}
       description={item.id as string}
@@ -40,8 +40,10 @@ export default observer(() => {
   return (
     <List
       style={styles.container}
-      data={wineStore.wines.slice()}
+      data={wineStore.wines}
+      extraData={wineStore.wines.length} // force refresh
       renderItem={renderItem}
+      keyExtractor={(item, index) => item.id as string}
     />
   );
 });
