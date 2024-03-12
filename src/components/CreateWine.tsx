@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Button } from '@ui-kitten/components';
 import { useStore } from '../stores/domain';
+import { Button } from 'react-native-paper';
 
 export default observer(() => {
   const { wineStore } = useStore();

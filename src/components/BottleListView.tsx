@@ -1,44 +1,33 @@
 import React from 'react';
-import {
-  Button,
-  Icon,
-  IconElement,
-  IconProps,
-  List,
-  ListItem,
-} from '@ui-kitten/components';
-import { StyleSheet } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import { observer } from 'mobx-react';
 import { useStore } from '../stores/domain';
 import { Wine } from '../stores/domain/BottleStore';
+import { Button, Icon, List } from 'react-native-paper';
 
 interface IListItem {
   item: Wine;
   index: number;
 }
 
-const renderItemAccessory = (): React.ReactElement => (
-  <Button size="tiny">FOLLOW</Button>
-);
+const renderItemAccessory = (): React.ReactElement => <Button>FOLLOW</Button>;
 
-const renderItemIcon = (props: IconProps): IconElement => (
-  <Icon {...props} name="person" />
-);
+const renderItemIcon = () => <Icon source="camera" size={20} />;
 
 export default observer(() => {
   const { wineStore } = useStore();
 
   const renderItem = ({ item }: IListItem): React.ReactElement => (
-    <ListItem
+    <List.Item
       title={item.title}
       description={item.id as string}
-      accessoryLeft={renderItemIcon}
-      accessoryRight={renderItemAccessory}
+      left={renderItemIcon}
+      right={renderItemAccessory}
     />
   );
 
   return (
-    <List
+    <FlatList
       style={styles.container}
       data={wineStore.wines}
       extraData={wineStore.wines.length} // force refresh
