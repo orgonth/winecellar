@@ -5,6 +5,7 @@ import BottleListView from './BottleListView';
 import CreateWine from './CreateWine';
 import { Divider, Text, useTheme } from 'react-native-paper';
 import { MD3Colors } from 'react-native-paper/lib/typescript/types';
+import FridgeView from './FridgeView';
 
 export default () => {
   const { colors } = useTheme();
@@ -17,7 +18,10 @@ export default () => {
         <CreateWine />
       </View>
       <Divider />
-      <BottleListView />
+      {/* <BottleListView /> */}
+      <View style={styles.mainContainer}>
+        <FridgeView />
+      </View>
       <View style={styles.bottomContainer}>
         <SearchBar />
       </View>
@@ -27,7 +31,10 @@ export default () => {
 
 const makeStyles = (colors: MD3Colors) =>
   StyleSheet.create({
-    container: {},
+    mainContainer: {
+      alignItems: 'center',
+      flex: 1,
+    },
     headerContainer: {
       justifyContent: 'center',
       alignItems: 'center',
