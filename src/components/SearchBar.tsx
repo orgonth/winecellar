@@ -85,11 +85,8 @@ const makeStyles = (colors: MD3Colors) =>
 
     content: {
       padding: 3,
-      backgroundColor: '#edf1f7',
-      shadowRadius: 8,
-      shadowOpacity: 0.3,
+      backgroundColor: '#f2e5f7',
       elevation: 3,
-      shadowOffset: { width: 0, height: 8 },
       borderRadius: 5,
       maxHeight: 200,
     },
