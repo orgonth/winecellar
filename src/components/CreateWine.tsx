@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { useStore } from '../stores/domain';
-import { Button } from 'react-native-paper';
+import { Button, TextInput } from 'react-native-paper';
 import { AutocompleteDropdownContextProvider } from 'react-native-autocomplete-dropdown';
 import { View, Modal } from 'react-native';
 import SearchableDropDown from './SearchableDropDown';
@@ -47,6 +47,7 @@ export default observer(() => {
                 { id: '4', title: 'Orange' },
               ]}
             />
+            <TextInput label={'Year'} keyboardType="numeric" maxLength={4} />
             <Button onPress={handleSubmit}>Add</Button>
             <Button onPress={hideModal}>Close</Button>
           </View>
