@@ -13,20 +13,27 @@ export default observer(() => {
 
   const [visible, setVisible] = React.useState(false);
 
+  // Form values
+  const [title, setTitle] = React.useState('');
+  const [country, setCountry] = React.useState('');
+  const [area, setArea] = React.useState('');
+  const [color, setColor] = React.useState('');
+  const [year, setYear] = React.useState(0);
+
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
 
   const handleSubmit = () => {
     const w = Wine.create({
       id: uuid.v4().toString(),
-      title: 'new wine',
+      title: title,
     });
 
     localStore.addWine(w);
 
     const b = Bottle.create({
       id: uuid.v4().toString(),
-      year: 2004,
+      year: year,
       wine: w.id,
     });
 
@@ -40,7 +47,13 @@ export default observer(() => {
         <AutocompleteDropdownContextProvider>
           <View>
             <SearchableDropDown
+              label="Title"
+              onChangeText={setTitle}
+              dataSet={[]}
+            />
+            <SearchableDropDown
               label="Country"
+              onChangeText={setCountry}
               dataSet={[
                 { id: '1', title: 'France' },
                 { id: '2', title: 'Italy' },
@@ -49,6 +62,7 @@ export default observer(() => {
             />
             <SearchableDropDown
               label="Area"
+              onChangeText={setArea}
               dataSet={[
                 { id: '1', title: 'Bordeaux' },
                 { id: '2', title: 'Bourgogne' },
@@ -56,6 +70,7 @@ export default observer(() => {
             />
             <SearchableDropDown
               label="Color"
+              onChangeText={setColor}
               dataSet={[
                 { id: '1', title: 'Red' },
                 { id: '2', title: 'White' },
@@ -63,7 +78,12 @@ export default observer(() => {
                 { id: '4', title: 'Orange' },
               ]}
             />
-            <TextInput label={'Year'} keyboardType="numeric" maxLength={4} />
+            <TextInput
+              label={'Year'}
+              onChangeText={(txt) => setYear(Number(txt))}
+              keyboardType="numeric"
+              maxLength={4}
+            />
             <Button onPress={handleSubmit}>Add</Button>
             <Button onPress={hideModal}>Close</Button>
           </View>
