@@ -7,11 +7,19 @@ import { View, Modal } from 'react-native';
 import SearchableDropDown from './SearchableDropDown';
 import uuid from 'react-native-uuid';
 import { Bottle, Wine } from '../stores/domain/Models';
+import { countries } from '../../db/Countries';
 
 export default observer(() => {
   const { localStore } = useStore();
 
   const [visible, setVisible] = React.useState(false);
+
+  // Suggestions
+
+  const countryList = Object.entries(countries).map(([k, v], i) => {
+    return { id: k, title: v.name };
+  });
+  countryList.sort((a, b) => a.title.localeCompare(b.title));
 
   // Form values
   const [title, setTitle] = React.useState('');
@@ -54,11 +62,7 @@ export default observer(() => {
             <SearchableDropDown
               label="Country"
               onChangeText={setCountry}
-              dataSet={[
-                { id: '1', title: 'France' },
-                { id: '2', title: 'Italy' },
-                { id: '3', title: 'Spain' },
-              ]}
+              dataSet={countryList}
             />
             <SearchableDropDown
               label="Area"
