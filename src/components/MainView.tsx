@@ -18,9 +18,9 @@ export default () => {
         <CreateWine />
       </View>
       <Divider />
-      {/* <BottleListView /> */}
       <View style={styles.mainContainer}>
-        <FridgeView />
+        <BottleListView />
+        {/* <FridgeView /> */}
       </View>
       <View style={styles.bottomContainer}>
         <SearchBar />

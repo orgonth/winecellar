@@ -1,22 +1,38 @@
 import React from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 import { useStore } from '../stores/domain';
 import { Button, TextInput } from 'react-native-paper';
 import { AutocompleteDropdownContextProvider } from 'react-native-autocomplete-dropdown';
 import { View, Modal } from 'react-native';
 import SearchableDropDown from './SearchableDropDown';
+import uuid from 'react-native-uuid';
+import { Bottle, Wine } from '../stores/domain/Models';
 
 export default observer(() => {
-  const { wineStore } = useStore();
-
-  const handleSubmit = () => {
-    wineStore.createWine('New wine');
-  };
+  const { localStore } = useStore();
 
   const [visible, setVisible] = React.useState(false);
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
+
+  const handleSubmit = () => {
+    const w = Wine.create({
+      id: uuid.v4().toString(),
+      title: 'new wine',
+    });
+
+    localStore.addWine(w);
+
+    const b = Bottle.create({
+      id: uuid.v4().toString(),
+      year: 2004,
+      wine: w.id,
+    });
+
+    localStore.addBottle(b);
+    hideModal();
+  };
 
   return (
     <>

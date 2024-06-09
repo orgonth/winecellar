@@ -1,21 +1,16 @@
-import { WineStore } from './BottleStore';
 import { createContext, useContext } from 'react';
-// import { AsyncTrunk } from 'mobx-sync';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Instance } from 'mobx-state-tree';
+import { LocalStore } from './Models';
 
 export class RootStore {
-  wineStore: WineStore;
+  localStore: Instance<typeof LocalStore>;
 
   constructor() {
-    this.wineStore = new WineStore();
+    this.localStore = LocalStore.create({ wines: [], bottles: [] });
   }
 }
 
 export const rootStore = new RootStore();
-
-// export const trunk = new AsyncTrunk(rootStore, {
-//   storage: AsyncStorage,
-// })
 
 export const StoreContext = createContext(rootStore);
 export const StoreProvider = StoreContext.Provider;
