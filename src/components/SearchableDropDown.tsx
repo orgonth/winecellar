@@ -25,8 +25,8 @@ export default (props: SearchableDropDownProps) => {
       closeOnBlur={true}
       closeOnSubmit={true}
       ignoreAccents={true}
-      InputComponent={TextInputWithLabel}
       inputHeight={50}
+      // InputComponent={TextInputWithLabel}
       textInputProps={{
         placeholderTextColor: txtColor,
         style: {
