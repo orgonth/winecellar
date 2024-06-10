@@ -1,4 +1,4 @@
-![tests](https://github.com/orgonth/winecellar/actions/workflows/unit-tests.yml/badge.svg)
+![jest](https://github.com/orgonth/winecellar/actions/workflows/jest.yml/badge.svg)
 
 # Wine Cellar
 
