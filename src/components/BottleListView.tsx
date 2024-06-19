@@ -16,6 +16,7 @@ const renderItemIcon = () => <Icon source="camera" size={20} />;
 
 export default observer(() => {
   const { localStore } = useStore();
+  const bottles = localStore.rack.bottles;
 
   const renderItem = ({ item }: IListItem): React.ReactElement => (
     <List.Item
@@ -29,8 +30,8 @@ export default observer(() => {
   return (
     <FlatList
       style={styles.container}
-      data={localStore.bottles}
-      extraData={localStore.bottles.length} // force refresh
+      data={bottles}
+      extraData={bottles.length} // force refresh
       renderItem={renderItem}
       keyExtractor={(item, index) => item.id as string}
     />

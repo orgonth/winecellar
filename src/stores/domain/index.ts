@@ -1,12 +1,20 @@
 import { createContext, useContext } from 'react';
 import { Instance } from 'mobx-state-tree';
-import { LocalStore } from './Models';
+import { LocalStore, Rack } from './Models';
+import uuid from 'react-native-uuid';
 
 export class RootStore {
   localStore: Instance<typeof LocalStore>;
 
   constructor() {
-    this.localStore = LocalStore.create({ wines: [], bottles: [] });
+    // for now we have a single rack
+    const r = Rack.create({
+      id: uuid.v4().toString(),
+    });
+
+    this.localStore = LocalStore.create({
+      rack: r as any,
+    });
   }
 }
 
