@@ -19,11 +19,38 @@ export interface IBottle extends Instance<typeof Bottle> {}
 export const Rack = types
   .model({
     id: types.identifier,
-    bottles: types.array(Bottle),
+    _rows: types.optional(types.integer, 0),
+    _columns: types.optional(types.integer, 0),
+    _bottles: types.array(types.maybeNull(Bottle)),
   })
   .actions((self) => ({
-    addBottle(b: SnapshotIn<typeof Bottle> | IBottle) {
-      self.bottles.push(b);
+    setCapacity(rows: number, columns: number) {
+      self._bottles.replace(
+        new Array<IBottle | null>(rows * columns).fill(null),
+      );
+      self._rows = rows;
+      self._columns = columns;
+      return self;
+    },
+
+    setBottle(
+      b: SnapshotIn<typeof Bottle> | IBottle,
+      row: number,
+      column: number,
+    ) {
+      if (row >= self._rows || column >= self._columns) {
+        console.log('Error: wrong location');
+      } else {
+        self._bottles.splice(row * self._columns + column, 1, b);
+      }
+    },
+  }))
+  .views((self) => ({
+    get bottles() {
+      return self._bottles.filter((e) => e !== null) as Array<IBottle>;
+    },
+    get capacity() {
+      return self._rows * self._columns;
     },
   }));
 export interface IRack extends Instance<typeof Rack> {}

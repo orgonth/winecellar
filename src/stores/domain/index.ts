@@ -10,7 +10,7 @@ export class RootStore {
     // for now we have a single rack
     const r = Rack.create({
       id: uuid.v4().toString(),
-    });
+    }).setCapacity(10, 6);
 
     this.localStore = LocalStore.create({
       rack: r as any,

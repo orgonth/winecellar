@@ -45,7 +45,7 @@ export default observer(() => {
       wine: w.id,
     });
 
-    localStore.rack.addBottle(b);
+    localStore.rack.setBottle(b, 0, 2);
     hideModal();
   };
 
